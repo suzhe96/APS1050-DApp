@@ -1,0 +1,150 @@
+Tested for 
+Truffle v5.1.31
+Solidity v0.5.16
+Node v12.13.0
+Web3.js v1.2.1
+
+Election Tutorial:
+https://www.youtube.com/watch?v=3681ZYbDSSk&feature=youtu.be&t=1h13m39s
+https://www.dappuniversity.com/articles/the-ultimate-ethereum-dapp-tutorial
+This is one of the best tutorials.
+We have updated the tutorial to the latest web3 and Metamask specifications so it can run.
+
+SOFTWARE INSTALLATION
+
+Install the nodejs javascript runtime environment:
+https://nodejs.org/en/download/
+in windows:
+once installed, edit the path variable (in windows):
+add ;C:\Program Files\nodejs\
+To the end of your Path variable 
+on the "User variable" section 
+of the Environment Variables 
+on the System Properties.
+If you never did this before read this:
+https://www.h3xed.com/windows/how-to-add-to-and-edit-windows-path-variable
+
+Install Git:  (optional, will need later on)
+https://git-scm.com/
+
+Install the Truffle IDE globally from the windows terminal:
+npm install -g truffle@v5.1.10  (use this version to run the tests)
+Mac: check out https://www.mobilefish.com/developer/blockchain/blockchain_quickguide_truffle.html
+
+Install liteserver globally from the windows terminal:
+npm install -g lite-server
+or goto: https://www.npmjs.com/package/lite-server
+
+Install Ganache:
+http://truffleframework.com/ganache and click the download button
+you should see Ganache started at http://127.0.0.1:7545
+
+run Ganache, quitstart mode
+Open Ganache:
+In Ganache Accounts tab you should see 10 addresses each with 100 testnet ether you have access to.
+Look at all the tabs (blocks, transactions, contracts, events, logs) and understand the contents.
+
+Intall Metamask in your default browser:
+https://metamask.io/download.html
+
+Link Metamask with Ganache:
+select: "No, I already have a seed phrase", import wallet
+copy the MNEMONIC from Ganache and paste it into
+"Enter your secret twelve word phrase here to restore your vault.
+Wallet Seed:"
+provide a password
+import
+GOTO: Main Ethereum Network Dropdown List (top right), and select Custom RPC
+copy RPC server address from Ganache (should be HTTP://127.0.0.1:7545) and paste it to New RPC URL
+chain id: 1337 (for the chain id) = 0x539 in hex  THIS IS THE CHAIN ID
+click save
+optional:
+click connections
+paste HTTP://127.0.0.1:7545 into 
+"Add Site
+Manually add a site to allow it access to your accounts, useful for older dapps"
+end of optional
+Close the Custom RPC setup window by clicking X
+You should see Account 1 with 100 Ether. This address should be the same as:
+In Ganache accounts tab, right under MNEMONIC, the first (topmost) account.
+By the way, this is the Coinbase account of your node.
+
+Compile Migrate and Run:
+
+Double click cmd.exe (this is for windows only) or open a terminal inside the tutorial directory
+write:
+truffle migrate --reset
+Truffle should migrate the Migrations.sol contract and the Election.sol contract inside contracts/.
+GOTO Ganache Accounts tab
+The topmost account in Ganache should be charged for this, and
+Metamask Account1 should reflect that charge.
+GOTO Ganache Transactions tab, 
+you should see the transactions for the migration of these two contracts,
+in order of creation.
+The Migrations.sol contract creation occurred first, should be at the bottom.
+The Election.sol contract creation occurred second, and is above that.
+Note that the "FROM ADDRESS" is Account1, the account that pays for the creation of these contracts.
+Note that the "CREATED CONTRACT ADDRESS" is the address of the Election.sol contract and the Migrations.sol contract.
+Note that these created contract addresses are NOT among the list of 10 addresses with testnet ether in the Ganache Accounts tab.
+Look at all the tabs (blocks, transactions, contracts, events, logs) and understand the contents.
+double click cmd.exe or open a terminal inside the tutorial directory
+write:
+npm run dev
+lite-server should run and 
+your default browser should open to page http://localhost:3000/
+Metamask notification should open and ask you if you want to connect Metamask to the Election Results page and associated app: accept the connection
+This Election Results page is index.html located in src/
+The associated app is in src/js/ directory and it is called app.js.
+You should see a web page open entitled Election Results.
+You should see a table with a list of candidates and votes for each candidate so far
+Under the table, there should be a dropdown list called select a candidate that allows you to select a candidate and vote
+Under the vote button
+Your Account: should show Account1 in Metamask (corresponding to the topmost account in Ganache)
+Vote for Candidate1
+Metamask notification should ask you to confirm (Account1 will call Election.sol account): confirm the transaction.
+Metamask Account1 should reflect the vote.
+The webpage should update the table of candidates with your vote for Candidate1.
+Note that since Account1 already voted, the updated page does not display the vote button anymore.
+GOTO Ganache Transactions tab and note the transaction: 
+a contract call from Account1 to Election.sol account paying 0 ether and consuming gas paid by Account1.
+Look at all the tabs (blocks, transactions, contracts, events, logs) and understand the contents.
+
+Import another account to Metamask to vote again
+GOTO Metamask MyAccounts
+Import account
+Paste your private key string here: GOTO Ganache Accounts tab, 
+to the second account from the top, open the private key icon (rightmost) and copy the private key
+DO NOT CLOSE METAMASK, JUST CLICK DONE
+paste the key into Metamask
+Account2 should display with 100 ether, corresponding to the second account from the top in Ganache Accounts tab.
+Reload the webpage.
+At this point the webpage will relad showing you the updated table of candidates and the vote button.
+Account2 should diplay below the vote button.
+If reload the webpage doesn't work as above, 
+double click cmd.exe and write:
+npm run dev
+and MetaMask Notification should open
+explicitly choose Account2 and push the connect button
+now you should see it:
+Account2 should diplay below the vote button.
+Vote for Candidate2.
+You should see a new table with 1 vote for each candidate.
+The vote button should not be displayed anymore as Account2 has now voted.
+
+We have updated the tutorial to reflect the latest web3 and Metamask specifications,
+and also corrected the error that diplayed the candidates more than once in the table.
+
+Console Tips:
+
+When instantiating a deployed contract from the truffle console:
+$ truffle console
+$ truffle (development) Election.deployed().then(function(instance) { app = instance })  INSTANTIATING THE DEPLOYED CONTRACT
+the response is "undefined" but  you must ignore that and just type:
+$ truffle (development) app.candidate() and you will get the correct response
+candidate 1
+
+Also within the truffle console use:
+web3.eth.getAccounts() instead of web3.eth.accounts()
+Use: web3.eth.getAccounts().then(function(acc){accounts=acc;});
+and: accounts[0];
+to get the first ETH address in console.
