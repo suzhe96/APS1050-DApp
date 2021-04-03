@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "name": "Frieda",
+    "img": "../images/boxer.jpeg",
+    "age": 3,
+    "breed": "Boxer",
+    "location": "Camas, Pennsylvania"
+  },
+  {
+    "id": 1,
+    "name": "Gina",
+    "img": "../images/scottish-terrier.jpeg",
+    "age": 3,
+    "breed": "Scottish Terrier",
+    "location": "Tooleville, West Virginia"
+  }
+]

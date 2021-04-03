@@ -1,0 +1,50 @@
+[
+  {
+    "name": "alaskan",
+    "img": "../images/alaskan.jpeg"
+  },
+  {
+    "name": "boxer",
+    "img": "../images/boxer.jpeg"
+  },
+  {
+    "name": "british-shorthair-blue",
+    "img": "../images/british-shorthair-blue.jpeg"
+  },
+  {
+    "name": "british-shorthair-golden",
+    "img": "../images/british-shorthair-golden.jpeg"
+  },
+  {
+    "name": "british-shorthair-goldenblue",
+    "img": "../images/british-shorthair-goldenblue.jpeg"
+  },
+  {
+    "name": "british-shorthair-silver",
+    "img": "../images/british-shorthair-silver.jpeg"
+  },
+  {
+    "name": "french-bulldog",
+    "img": "../images/french-bulldog.jpeg"
+  },
+  {
+    "name": "golden-retriever",
+    "img": "../images/golden-retriever.jpeg"
+  },
+  {
+    "name": "samoyed",
+    "img": "../images/samoyed.jpeg"
+  },
+  {
+    "name": "scottish-terrier",
+    "img": "../images/scottish-terrier.jpeg"
+  },
+  {
+    "name": "shiba",
+    "img": "../images/shiba.jpeg"
+  },
+  {
+    "name": "husky",
+    "img": "../images/husky.jpeg"
+  }
+]

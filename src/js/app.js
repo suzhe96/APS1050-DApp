@@ -45,8 +45,17 @@ App = {
         fromBlock: 0,
         toBlock: 'latest'
       }).watch(function(error, event) {
-        console.log("event triggered", event)
+        console.log("vote event triggered", event)
         // Reload when a new vote is recorded
+        App.render();
+      });
+
+      instance.registeredEvent({}, {
+        fromBlock: 0,
+        toBlock: 'latest'
+      }).watch(function(error, event) {
+        console.log("register event triggered", event)
+        // Reload when a new register is recorded
         App.render();
       });
     });
@@ -85,26 +94,44 @@ App.contracts.Election.deployed().then(function(instance) {
       candidatesResults.empty();
 
       var candidatesSelect = $('#candidatesSelect');
+      var candidateRegisterImg = $('#candidatesRegisterImg'); 
       candidatesSelect.empty();
+      candidateRegisterImg.empty();
+
     for (var i = 0; i < candidatesCount; i++) {
       var id = values[i][0];
-      var name = values[i][1];
-      var voteCount = values[i][2];
+      var petName = values[i][1];
+      var petBreed = values[i][2];
+      var petAge = values[i][3];
+      var petLoc = values[i][4];
+      var petImg = values[i][5];
+      var voteCount = values[i][6];
 
       // Render candidate Result
-      var candidateTemplate = "<tr><th>" + id + "</th><td>" + name + "</td><td>" + voteCount + "</td></tr>"
+      var candidateTemplate = "<tr><th>" + i + "</th><td>" + petName + "</td><td>" + petBreed + "</td><td>" + petAge + "</td><td>" + petLoc + "</td><td><img src="+petImg+" alt=\"\" border=3 height=100 width=100></img></td><td>" + voteCount + "</td></tr>";;
       candidatesResults.append(candidateTemplate);
 
       // Render candidate ballot option
-      var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
+      var candidateOption = "<option value='" + id + "' >" + petName + "</ option>"
       candidatesSelect.append(candidateOption);
     }
+    $.getJSON('../images.json', function(data) {  
+      for (i = 0; i < data.length; i ++) {
+        var option = "<option value='" + i + "' >" + data[i].name + "</ option>"
+        candidateRegisterImg.append(option);
+      }
+    });
   });
   return electionInstance.voters(App.account);
 }).then(function(hasVoted) {
   // Do not allow a user to vote
   if(hasVoted) {
-    $('form').hide();
+    $('form#voteForm').hide();
+  }
+  return electionInstance.regList(App.account);
+}).then(function(hasRegistered) {
+  if(hasRegistered) {
+    $('form#regForm').hide();
   }
   loader.hide();
   content.show();
@@ -122,6 +149,25 @@ App.contracts.Election.deployed().then(function(instance) {
       return instance.vote(candidateId, { from: App.account });
     }).then(function(result) {
       // Wait for votes to update
+      $("#content").hide();
+      $("#loader").show();
+    }).catch(function(err) {
+      console.error(err);
+    });
+  },
+
+  castRegister: function() {
+    var regName = $('#candidatesRegisterName').val();
+    var regBreed = $('#candidatesRegisterBreed').val();
+    var regAge = $('#candidatesRegisterAge').val();
+    var regLoc = $('#candidatesRegisterLoc').val();
+    var regImgId = $('#candidatesRegisterImg').val();
+    App.contracts.Election.deployed().then(function(instance) {
+      $.getJSON('../images.json', function(data) {  
+        return instance.register(regName, regBreed, regAge, regLoc, data[regImgId].img, { from: App.account });
+      })
+    }).then(function(result) {
+      // Wait for reg to update
       $("#content").hide();
       $("#loader").show();
     }).catch(function(err) {

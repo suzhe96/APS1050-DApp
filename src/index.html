@@ -21,7 +21,7 @@
     <div class="container" style="width: 650px;">
       <div class="row">
         <div class="col-lg-12">
-          <h1 class="text-center">Election Results</h1>
+          <h1 class="text-center">Pet's Election</h1>
           <hr/>
           <br/>
           <div id="loader">
@@ -31,8 +31,12 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
                   <th scope="col">Name</th>
+                  <th scope="col">Breed</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Location</th>
+                  <th scope="col">Images</th>
                   <th scope="col">Votes</th>
                 </tr>
               </thead>
@@ -40,13 +44,33 @@
               </tbody>
             </table>
             <hr/>
-            <form onSubmit="App.castVote(); return false;">
+            <form onSubmit="App.castVote(); return false;" id="voteForm">
+              <h4>Vote Candidate</h4>
               <div class="form-group">
                 <label for="candidatesSelect">Select Candidate</label>
                 <select class="form-control" id="candidatesSelect">
                 </select>
               </div>
               <button type="submit" class="btn btn-primary">Vote</button>
+              <hr />
+            </form>
+
+            <form onSubmit="App.castRegister(); return false;" id="regForm">
+              <h4>Register Candidate</h4>
+              <div class="form-group">
+                <label for="candidatesRegisterName">Name</label></br>
+                <input type="text" id="candidatesRegisterName"></br>
+                <label for="candidatesRegisterBreed">Breed</label></br>
+                <input type="text" id="candidatesRegisterBreed"></br>
+                <label for="candidatesRegisterAge">Age</label></br>
+                <input type="number" id="candidatesRegisterAge"></br>
+                <label for="candidatesRegisterLoc">Location</label></br>
+                <input type="text" id="candidatesRegisterLoc"></br>
+                <label for="candidatesRegisterImg">Candidate Profile Picture</label>
+                <select class="form-control" id="candidatesRegisterImg">
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Register</button>
               <hr />
             </form>
             <p id="accountAddress" class="text-center"></p>
