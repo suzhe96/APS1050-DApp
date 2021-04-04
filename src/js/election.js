@@ -1,43 +1,43 @@
 
-App = {
+ElectionApp = {
   web3Provider: null,
   contracts: {},
   account: '0x0',
   hasVoted: false,
 
   init: async function() {
-    return await App.initWeb3();
+    return await ElectionApp.initWeb3();
   },
 
   initWeb3: async function() {
 
     if (window.ethereum) {
-      App.web3Provider = window.ethereum;
+      ElectionApp.web3Provider = window.ethereum;
       await window.ethereum.enable();
-      web3 = new Web3(App.web3Provider);
-      return App.initContract();
+      web3 = new Web3(ElectionApp.web3Provider);
+      return ElectionApp.initContract();
     }
     else {
-      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
-      web3 = new Web3(App.web3Provider);
-      return App.initContract();
+      ElectionApp.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+      web3 = new Web3(ElectionApp.web3Provider);
+      return ElectionApp.initContract();
     }
   },
 
   initContract: function() {
     $.getJSON("Election.json", function(election) {
       // Instantiate a new truffle contract from the artifact
-      App.contracts.Election = TruffleContract(election);
+      ElectionApp.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
-      App.contracts.Election.setProvider(App.web3Provider);
-      App.listenForEvents();
-      return App.render();
+      ElectionApp.contracts.Election.setProvider(ElectionApp.web3Provider);
+      ElectionApp.listenForEvents();
+      return ElectionApp.render();
     });
   },
 
   // Listen for events emitted from the contract
   listenForEvents: function() {
-    App.contracts.Election.deployed().then(function(instance) {
+    ElectionApp.contracts.Election.deployed().then(function(instance) {
       // Restart Chrome if you are unable to receive this event
       // This is a known issue with Metamask
       // https://github.com/MetaMask/metamask-extension/issues/2393
@@ -47,7 +47,7 @@ App = {
       }).watch(function(error, event) {
         console.log("vote event triggered", event)
         // Reload when a new vote is recorded
-        App.render();
+        ElectionApp.render();
       });
 
       instance.registeredEvent({}, {
@@ -56,7 +56,7 @@ App = {
       }).watch(function(error, event) {
         console.log("register event triggered", event)
         // Reload when a new register is recorded
-        App.render();
+        ElectionApp.render();
       });
     });
   },
@@ -75,13 +75,13 @@ content.hide();
 // Load account data
 web3.eth.getCoinbase(function(err, account) {
   if (err === null) {
-    App.account = account;
+    ElectionApp.account = account;
     $("#accountAddress").html("Your Account: " + account);
   }
 });
 
 // Load contract data
-App.contracts.Election.deployed().then(function(instance) {
+ElectionApp.contracts.Election.deployed().then(function(instance) {
   electionInstance = instance;
   return electionInstance.candidatesCount();
 }).then(function(candidatesCount) {
@@ -122,13 +122,13 @@ App.contracts.Election.deployed().then(function(instance) {
       }
     });
   });
-  return electionInstance.voters(App.account);
+  return electionInstance.voters(ElectionApp.account);
 }).then(function(hasVoted) {
   // Do not allow a user to vote
   if(hasVoted) {
     $('form#voteForm').hide();
   }
-  return electionInstance.regList(App.account);
+  return electionInstance.regList(ElectionApp.account);
 }).then(function(hasRegistered) {
   if(hasRegistered) {
     $('form#regForm').hide();
@@ -145,8 +145,8 @@ App.contracts.Election.deployed().then(function(instance) {
 
   castVote: function() {
     var candidateId = $('#candidatesSelect').val();
-    App.contracts.Election.deployed().then(function(instance) {
-      return instance.vote(candidateId, { from: App.account });
+    ElectionApp.contracts.Election.deployed().then(function(instance) {
+      return instance.vote(candidateId, { from: ElectionApp.account });
     }).then(function(result) {
       // Wait for votes to update
       $("#content").hide();
@@ -162,9 +162,9 @@ App.contracts.Election.deployed().then(function(instance) {
     var regAge = $('#candidatesRegisterAge').val();
     var regLoc = $('#candidatesRegisterLoc').val();
     var regImgId = $('#candidatesRegisterImg').val();
-    App.contracts.Election.deployed().then(function(instance) {
+    ElectionApp.contracts.Election.deployed().then(function(instance) {
       $.getJSON('../images.json', function(data) {  
-        return instance.register(regName, regBreed, regAge, regLoc, data[regImgId].img, { from: App.account });
+        return instance.register(regName, regBreed, regAge, regLoc, data[regImgId].img, { from: ElectionApp.account });
       })
     }).then(function(result) {
       // Wait for reg to update
@@ -178,6 +178,6 @@ App.contracts.Election.deployed().then(function(instance) {
 
 $(function() {
   $(window).load(function() {
-    App.init();
+    ElectionApp.init();
   });
 });
