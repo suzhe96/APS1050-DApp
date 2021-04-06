@@ -2,7 +2,6 @@ MarketspaceApp = {
     web3Provider: null,
     contracts: {},
     account: '0x0',
-    hasVoted: false,
   
     init: async function() {
       return await MarketspaceApp.initWeb3();

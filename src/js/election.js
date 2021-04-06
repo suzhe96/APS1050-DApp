@@ -108,7 +108,7 @@ ElectionApp.contracts.Election.deployed().then(function(instance) {
       var voteCount = values[i][6];
 
       // Render candidate Result
-      var candidateTemplate = "<tr><th>" + i + "</th><td>" + petName + "</td><td>" + petBreed + "</td><td>" + petAge + "</td><td>" + petLoc + "</td><td><img src="+petImg+" alt=\"\" border=3 height=100 width=100></img></td><td>" + voteCount + "</td></tr>";;
+      var candidateTemplate = "<tr><th>" + i + "</th><td>" + petName + "</td><td>" + petBreed + "</td><td>" + petAge + "</td><td>" + petLoc + "</td><td><img src="+petImg+" alt=\"\" border=3 height=100 width=100></img></td><td>" + voteCount + "</td></tr>";
       candidatesResults.append(candidateTemplate);
 
       // Render candidate ballot option
