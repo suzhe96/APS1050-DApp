@@ -4,18 +4,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Election Results</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <style>
       table td, table th  
             {    
-            max-width: 150px;
+            max-width: 250px;
             word-wrap: break-word;
             }
     </style>
@@ -28,29 +30,30 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container" style="width: 650px;">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="text-center">Pet's Forum</h1>
-          <hr/>
-          <br/>
-          <div id="loaderForum">
-            <p class="text-center">Loading...</p>
-          </div>
-          
-
+    <header class="w3-panel w3-center w3-opacity" style="padding:16px 16px">
+      <h1 class="w3-xxlarge">PET'S FORUM</h1>
+      <h6>FORUM FOR PET LOVER TO SUPPORT EACH OTHER</h6>
+      
+      <div class="w3-padding-32">
+        <div class="w3-bar w3-border">
+          <a href="./index.html" class="w3-bar-item w3-button w3-light-grey">Home</a>
+          <a href="./election.html" class="w3-bar-item w3-button">Election</a>
+          <a href="./marketplace.html" class="w3-bar-item w3-button w3-light-grey">Market</a>
+          <a href="./forum.html" class="w3-bar-item w3-button">Forum</a>
         </div>
+        <p id="accountAddress" class="text-center"></p>
       </div>
-    </div>
+    </header>
+
     <div class="w3-container">
       <div id="contentForum" style="display: none;">
         <table class="table table-striped">
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Content</th>
-              <th scope="col">Time</th>
+              <th scope="col">Comment</th>
               <th scope="col">Author</th>
+              <th scope="col">Time</th>
             </tr>
           </thead>
           <tbody id="postResults">
@@ -61,12 +64,11 @@
           <h4>Say Something...</h4>
           <div class="form-group">
             <!-- <label for="commentContents">Say Something...</label></br> -->
-            <input type="text" id="commentContents"></br>
+            <input type="text" id="commentContents" style="width:550px;"></br>
           </div>
           <button type="submit" class="btn btn-primary">Post</button>
           <hr />
         </form>
-        <p id="accountAddress" class="text-center"></p>
       </div>
     </div>
 

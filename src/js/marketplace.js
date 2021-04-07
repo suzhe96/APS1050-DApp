@@ -104,16 +104,20 @@ MarketspaceApp = {
         var petPrice = values[i][6];
         var petOwner = values[i][7];
         var petSold = values[i][8];
-  
-        // Render Result
         var template = "<tr><th>" + id + "</th><td>" + 
             petName + "</td><td>" +
             petBreed + "</td><td>" +
             petAge + "</td><td>" +
             petLoc + "</td><td><img src="+petImg+" alt=\"\" border=3 height=100 width=100></img></td><td>" +
             petOwner + "</td><td>" +
-            web3.fromWei(petPrice.toString(), "Ether") + "</td><td>" +
-            petSold + "</td><td>" + "<button id=marketBuyButton onClick=\"MarketspaceApp.castPurchase(" + id +")\" type=\"button\">Buy</button></td></tr>";
+            web3.fromWei(petPrice.toString(), "Ether") + "</td><td>"
+        if (petSold.toString() == "true") {
+          template = template + "Sold" + "</td></tr>";
+        } else {
+          template = template + "Available" + "</td><td>" + "<button id=marketBuyButton onClick=\"MarketspaceApp.castPurchase(" + id +")\" type=\"button\">Buy</button></td></tr>";
+        }
+  
+        // Render Result
         marketResults.append(template);
       }
       $.getJSON('../images.json', function(data) {  

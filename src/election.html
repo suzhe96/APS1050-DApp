@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Election Results</title>
 
@@ -13,7 +16,7 @@
     <style>
       table td, table th  
             {    
-            max-width: 150px;
+            max-width: 250px;
             word-wrap: break-word;
             }
     </style>
@@ -26,64 +29,69 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container" style="width: 650px;">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="text-center">Pet's Election</h1>
-          <hr/>
-          <br/>
-          <div id="loader">
-            <p class="text-center">Loading...</p>
-          </div>
-          <div id="content" style="display: none;">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Breed</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Images</th>
-                  <th scope="col">Votes</th>
-                </tr>
-              </thead>
-              <tbody id="candidatesResults">
-              </tbody>
-            </table>
-            <hr/>
-            <form onSubmit="ElectionApp.castVote(); return false;" id="voteForm">
-              <h4>Vote Candidate</h4>
-              <div class="form-group">
-                <label for="candidatesSelect">Select Candidate</label>
-                <select class="form-control" id="candidatesSelect">
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary">Vote</button>
-              <hr />
-            </form>
-
-            <form onSubmit="ElectionApp.castRegister(); return false;" id="regForm">
-              <h4>Register Candidate</h4>
-              <div class="form-group">
-                <label for="candidatesRegisterName">Name</label></br>
-                <input type="text" id="candidatesRegisterName"></br>
-                <label for="candidatesRegisterBreed">Breed</label></br>
-                <input type="text" id="candidatesRegisterBreed"></br>
-                <label for="candidatesRegisterAge">Age</label></br>
-                <input type="number" id="candidatesRegisterAge"></br>
-                <label for="candidatesRegisterLoc">Location</label></br>
-                <input type="text" id="candidatesRegisterLoc"></br>
-                <label for="candidatesRegisterImg">Candidate Profile Picture</label>
-                <select class="form-control" id="candidatesRegisterImg">
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary">Register</button>
-              <hr />
-            </form>
-            <p id="accountAddress" class="text-center"></p>
-          </div>
+    <header class="w3-panel w3-center w3-opacity" style="padding:16px 16px">
+      <h1 class="w3-xxlarge">PET'S ELECTION</h1>
+      <h6>VOTE FOR YOUR FAVOURIATE CANDIDATE</h6>
+      
+      <div class="w3-padding-32">
+        <div class="w3-bar w3-border">
+          <a href="./index.html" class="w3-bar-item w3-button w3-light-grey">Home</a>
+          <a href="./election.html" class="w3-bar-item w3-button">Election</a>
+          <a href="./marketplace.html" class="w3-bar-item w3-button w3-light-grey">Market</a>
+          <a href="./forum.html" class="w3-bar-item w3-button">Forum</a>
         </div>
+        <p id="accountAddress" class="text-center"></p>
+      </div>
+    </header>
+
+    <div class="w3-container">
+      <div id="content" style="display: none;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Breed</th>
+              <th scope="col">Age</th>
+              <th scope="col">Location</th>
+              <th scope="col">Images</th>
+              <th scope="col">Votes</th>
+            </tr>
+          </thead>
+          <tbody id="candidatesResults">
+          </tbody>
+        </table>
+        <hr/>
+        <form onSubmit="ElectionApp.castVote(); return false;" id="voteForm">
+          <h4>Vote Candidate</h4>
+          <div class="form-group">
+            <label for="candidatesSelect">Select Candidate</label>
+            <select class="form-control" id="candidatesSelect">
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Vote</button>
+          <hr />
+        </form>
+
+        <form onSubmit="ElectionApp.castRegister(); return false;" id="regForm">
+          <h4>Register Candidate</h4>
+          <div class="form-group">
+            <label for="candidatesRegisterName">Name</label></br>
+            <input type="text" id="candidatesRegisterName"></br>
+            <label for="candidatesRegisterBreed">Breed</label></br>
+            <input type="text" id="candidatesRegisterBreed"></br>
+            <label for="candidatesRegisterAge">Age</label></br>
+            <input type="number" id="candidatesRegisterAge"></br>
+            <label for="candidatesRegisterLoc">Location</label></br>
+            <input type="text" id="candidatesRegisterLoc"></br>
+            <label for="candidatesRegisterImg">Candidate Profile Picture</label>
+            <select class="form-control" id="candidatesRegisterImg">
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+          <hr />
+        </form>
+        <p id="accountAddress" class="text-center"></p>
       </div>
     </div>
 

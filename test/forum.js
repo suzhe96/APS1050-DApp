@@ -30,8 +30,8 @@ contract("Forum", function(accounts) {
     it("it initializes the product with the correct values", async () => {
       let post = await forumInstance.posts(1);
       assert.equal(post[0], 1, "contains the correct id");
-      assert.equal(post[1], "Dummy Comments", "contains the correct comment");
-      assert.equal(post[3], "timestamp", "contains the correct time");
+      assert.equal(post[1], "Do you have something News Worthy to report?", "contains the correct comment");
+      assert.equal(post[3], "Wed Apr 07 2021", "contains the correct time");
     });
 
     it("it creates posts", async () => {

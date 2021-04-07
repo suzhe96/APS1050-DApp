@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Election Results</title>
 
@@ -13,7 +16,7 @@
     <style>
       table td, table th  
             {    
-            max-width: 150px;
+            max-width: 250px;
             word-wrap: break-word;
             }
     </style>
@@ -26,59 +29,63 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container" style="width: 650px;">
-      <div class="row">
-        <div class="col-lg-12">
-          <h1 class="text-center">Pet's Marketplace</h1>
-          <hr/>
-          <br/>
-          <div id="loaderMarketspace">
-            <p class="text-center">Loading...</p>
-          </div>
-          <div id="contentMarketspace" style="display: none;">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Breed</th>
-                  <th scope="col">Age</th>
-                  <th scope="col">Location</th>
-                  <th scope="col">Images</th>
-                  <th scope="col">Owner</th>
-                  <th scope="col">Price (Ether)</th>
-                  <th scope="col">Status</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody id="marketResults">
-              </tbody>
-            </table>
-            <hr/>
-
-            <form onSubmit="MarketspaceApp.castRegister(); return false;" id="regForm">
-              <h4>Register Pet to Marketspace</h4>
-              <div class="form-group">
-                <label for="marketRegisterName">Name</label></br>
-                <input type="text" id="marketRegisterName"></br>
-                <label for="marketRegisterBreed">Breed</label></br>
-                <input type="text" id="marketRegisterBreed"></br>
-                <label for="marketRegisterAge">Age</label></br>
-                <input type="number" id="marketRegisterAge"></br>
-                <label for="marketRegisterLoc">Location</label></br>
-                <input type="text" id="marketRegisterLoc"></br>
-                <label for="marketRegisterPrice">Price (Ether)</label></br>
-                <input type="text" id="marketRegisterPrice"></br>
-                <label for="marketRegisterImg">Pet Picture</label>
-                <select class="form-control" id="marketRegisterImg">
-                </select>
-              </div>
-              <button type="submit" class="btn btn-primary">Add</button>
-              <hr />
-            </form>
-            <p id="accountAddressMarketspace" class="text-center"></p>
-          </div>
+    <header class="w3-panel w3-center w3-opacity" style="padding:16px 16px">
+      <h1 class="w3-xxlarge">PET'S MARKET</h1>
+      <h6>A MARKETPLACE FOR PET LOVER</h6>
+      
+      <div class="w3-padding-32">
+        <div class="w3-bar w3-border">
+          <a href="./index.html" class="w3-bar-item w3-button w3-light-grey">Home</a>
+          <a href="./election.html" class="w3-bar-item w3-button">Election</a>
+          <a href="./marketplace.html" class="w3-bar-item w3-button w3-light-grey">Market</a>
+          <a href="./forum.html" class="w3-bar-item w3-button">Forum</a>
         </div>
+        <p id="accountAddressMarketspace" class="text-center"></p>
+      </div>
+    </header>
+
+    <div class="w3-container">
+      <div id="contentMarketspace" style="display: none;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Breed</th>
+              <th scope="col">Age</th>
+              <th scope="col">Location</th>
+              <th scope="col">Images</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Price (Ether)</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="marketResults">
+          </tbody>
+        </table>
+        <hr/>
+
+        <form onSubmit="MarketspaceApp.castRegister(); return false;" id="regForm">
+          <h4>Register Pet to Marketspace</h4>
+          <div class="form-group">
+            <label for="marketRegisterName">Name</label></br>
+            <input type="text" id="marketRegisterName"></br>
+            <label for="marketRegisterBreed">Breed</label></br>
+            <input type="text" id="marketRegisterBreed"></br>
+            <label for="marketRegisterAge">Age</label></br>
+            <input type="number" id="marketRegisterAge"></br>
+            <label for="marketRegisterLoc">Location</label></br>
+            <input type="text" id="marketRegisterLoc"></br>
+            <label for="marketRegisterPrice">Price (Ether)</label></br>
+            <input type="text" id="marketRegisterPrice"></br>
+            <label for="marketRegisterImg">Pet Picture</label>
+            <select class="form-control" id="marketRegisterImg">
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Add</button>
+          <hr />
+        </form>
       </div>
     </div>
 

@@ -35,7 +35,7 @@ contract("Marketplace", function([deployer, seller, buyer]) {
       assert.equal(product[3], 1, "contains the correct age");
       assert.equal(product[4], "Toronto, Ontario", "contains the correct location");
       assert.equal(product[5], "../images/british-shorthair-golden.jpeg", "contains the correct img");
-      assert.equal(product[6], 20, "contains the correct price");
+      assert.equal(product[6], 200000000000000000, "contains the correct price");
     });
 
     it("it creates product", async () => {

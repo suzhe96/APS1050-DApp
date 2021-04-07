@@ -25,7 +25,7 @@ contract Marketplace {
     );
 
     constructor() public {
-        createProduct("Oli", "British Shorthair", 1, "Toronto, Ontario", "../images/british-shorthair-golden.jpeg", 20);
+        createProduct("Oli", "British Shorthair", 1, "Toronto, Ontario", "../images/british-shorthair-golden.jpeg", 200000000000000000);
     }
 
     function createProduct(string memory _name, string memory _breed, uint _age, string memory _loc, string memory _img, uint _price) public {
