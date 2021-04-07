@@ -76,9 +76,14 @@ content.hide();
 web3.eth.getCoinbase(function(err, account) {
   if (err === null) {
     ElectionApp.account = account;
-    $("#accountAddress").html("Your Account: " + account);
+    $("#accountAddress").html("Account: " + account);
+    web3.eth.getBalance(account, function(err, balance) {
+      if (err === null) {
+        $("#accountBalance").html("Balances: " + web3.fromWei(balance, "Ether") + " Ether");
+      }
+    })
   }
-});
+})
 
 // Load contract data
 ElectionApp.contracts.Election.deployed().then(function(instance) {

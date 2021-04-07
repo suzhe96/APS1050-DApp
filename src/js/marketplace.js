@@ -74,9 +74,14 @@ MarketspaceApp = {
   web3.eth.getCoinbase(function(err, account) {
     if (err === null) {
       MarketspaceApp.account = account;
-      $("#accountAddressMarketspace").html("Your Account: " + account);
+      $("#accountAddressMarketspace").html("Account: " + account);
+      web3.eth.getBalance(account, function(err, balance) {
+        if (err === null) {
+          $("#accountBalanceMarketspace").html("Balances: " + web3.fromWei(balance, "Ether") + " Ether");
+        }
+      })
     }
-  });
+  })
   
   // Load contract data
   MarketspaceApp.contracts.Marketplace.deployed().then(function(instance) {
