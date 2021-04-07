@@ -78,6 +78,9 @@ ForumApp.contracts.Forum.deployed().then(function(instance) {
     candArray.push(forumInstance.posts(i));
   }
   Promise.all(candArray).then(function(values) {
+      var postSelect = $('#postSelect');
+      postSelect.empty();
+      postSelect.append("<option value='0' >New Post</ option>")
       var postResults = $("#postResults");
       postResults.empty();
 
@@ -88,9 +91,13 @@ ForumApp.contracts.Forum.deployed().then(function(instance) {
       var forumTimestamp = values[i][3];
       
 
-      // Render candidate Result
-      var postTemplate = "<tr><th>" + i + "</th><td>" + forumContents + "</td><td>" + formOwner + "</td><td>" + forumTimestamp + "</td></tr>";
+      // Render Result
+      var postTemplate = "<tr><th>" + id + "</th><td>" + forumContents + "</td><td>" + formOwner + "</td><td>" + forumTimestamp + "</td></tr>";
       postResults.append(postTemplate);
+
+      // Render ballot option
+      var postOption = "<option value='" + id + "' >" + "Reply to Post " + id + "</ option>"
+      postSelect.append(postOption);
     }
   });
   loader.hide();
@@ -102,10 +109,17 @@ ForumApp.contracts.Forum.deployed().then(function(instance) {
 
   castComment: function() {
     var contents = $('#commentContents').val();
+    var postTypeId = $('#postSelect').val();
+    var contentPost;
+    if (postTypeId == 0) {
+      contentPost = "【New Post】 " + contents;
+    } else {
+      contentPost = "【Reply to Post " + postTypeId.toString() + "】 " + contents;
+    }
     var timestamp = new Date();
     var timestampStr = timestamp.toDateString();
     ForumApp.contracts.Forum.deployed().then(function(instance) {
-      return instance.comment(contents, timestampStr, { from: ForumApp.account });
+      return instance.comment(contentPost, timestampStr, { from: ForumApp.account });
     }).then(function(result) {
       // Wait for votes to update
       $("div#contentForum").hide();

@@ -22,7 +22,7 @@ contract Forum {
 
     constructor () public {
         // Default candidate from pets.json
-        addPost("Do you have something News Worthy to report?", "Wed Apr 07 2021");
+        addPost("【New Post】 Do you have something News Worthy to report?", "Wed Apr 07 2021");
     }
 
     function addPost (string memory _contents, string memory _time) private {

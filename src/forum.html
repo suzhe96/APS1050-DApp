@@ -51,7 +51,7 @@
           <thead>
             <tr>
               <th scope="col">ID</th>
-              <th scope="col">Comment</th>
+              <th scope="col">Post</th>
               <th scope="col">Author</th>
               <th scope="col">Time</th>
             </tr>
@@ -61,10 +61,13 @@
         </table>
         <hr/>
         <form onSubmit="ForumApp.castComment(); return false;" id="commentForm">
-          <h4>Say Something...</h4>
+          <h4>Say something!</h4>
           <div class="form-group">
             <!-- <label for="commentContents">Say Something...</label></br> -->
             <input type="text" id="commentContents" style="width:550px;"></br>
+            <label for="postSelect">Select post type</label>
+            <select class="form-control" id="postSelect">
+            </select>
           </div>
           <button type="submit" class="btn btn-primary">Post</button>
           <hr />
